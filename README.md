@@ -1,16 +1,25 @@
 # Navisha Rai · Portfolio
 
-Strategic design portfolio. The whole site is one self-contained file, `index.html`: all images, videos, fonts links and scripts are inside it.
+Strategic design portfolio of Navisha Rai (MDes Strategic Design Management, NID).
 
-## Publish on GitHub Pages
+The whole site is one self-contained file, `index.html`. Images, the interactive prototypes and the footer game are embedded in it, so there is no build step and nothing to install.
 
-1. Create a new public repository on GitHub, for example `navisha-portfolio`.
-2. Click **Add file → Upload files** and drag in `index.html`, `.nojekyll` and this `README.md`. Commit.
-3. Go to **Settings → Pages**. Under **Build and deployment**, set Source to **Deploy from a branch**, Branch to **main** and folder to **/ (root)**. Save.
-4. After a minute or two the site is live at `https://<your-username>.github.io/navisha-portfolio/`.
+## Case studies
+- Klockit: proactive home care service
+- A Third Eye View: auditing a 52-year-old loom maker
+- Roger That: reducing divided attention at the police front desk
+- Koo & Kie: a pairing-led cookie brand (concept)
+- Chirpmonks: SurveySparrow illustration system
+- Wellness tourism in India: design research
+- PocketPal: save first, spend what's left
 
-To use `https://<your-username>.github.io/` instead, name the repository `<your-username>.github.io`.
+## Publish with GitHub Pages
+1. Push this folder to a GitHub repository.
+2. Open **Settings → Pages**.
+3. Under **Build and deployment**, choose **Deploy from a branch**, pick `main` and `/ (root)`, then save.
+4. The site goes live at `https://<username>.github.io/<repository>/` within a minute or two.
 
-## Updating
+`.nojekyll` tells GitHub Pages to serve the files as they are.
 
-Replace `index.html` with the new version (Upload files → same name) and commit. Pages republishes on its own.
+## Run locally
+Open `index.html` in any modern browser. Fonts load from Google Fonts, so they need an internet connection; everything else works offline.
