@@ -10670,8 +10670,9 @@ html body #page #gp-understand .gp-charts .gp-chart{grid-column:1/-1!important;m
 #page .bd-lg-nift{mix-blend-mode:multiply}
 
 /* dock work menu */
-#dock .dk-wk i{display:inline-block;margin-left:2px;font-style:normal;transition:transform .2s}
-#dock .dk-wk.open i{transform:rotate(180deg)}
+#dock .dk-wk{display:inline-flex;align-items:center;gap:5px}
+#dock .dk-chev{width:11px;height:11px;flex:none;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;transition:transform .2s}
+#dock .dk-wk.open .dk-chev{transform:rotate(180deg)}
 #wkmenu{position:fixed;z-index:60;display:flex;flex-direction:column;padding:8px;background:#F4F2EC;color:#1c1c1c;border:1px solid rgba(0,0,0,.08);border-radius:18px;box-shadow:0 18px 40px -12px rgba(0,0,0,.35);max-height:calc(100vh - 120px);overflow-y:auto;opacity:0;transform:translateY(8px);transition:opacity .2s ease,transform .2s ease}
 #wkmenu.on{opacity:1;transform:none}
 #wkmenu[hidden]{display:none}
@@ -11146,7 +11147,7 @@ false && document.addEventListener('pointermove', e=>{
 
 /* ---------- floating dock with sliding pill ---------- */
 const dock = $('#dock'), pill = $('#pill');
-dock.insertAdjacentHTML('beforeend', `<button data-go="home">Index</button><button type="button" class="dk-wk" aria-haspopup="true" aria-expanded="false" aria-controls="wkmenu">Work <i aria-hidden="true">⌄</i></button>` + SECTIONS.filter(s=>!s.hidden&&s.id!=='work').map(s=>`<button data-go="${s.id}">${s.label}</button>`).join(''));
+dock.insertAdjacentHTML('beforeend', `<button data-go="home">Index</button><button type="button" class="dk-wk" aria-haspopup="true" aria-expanded="false" aria-controls="wkmenu">Work <svg class="dk-chev" viewBox="0 0 12 12" aria-hidden="true"><path d="M3 4.5l3 3 3-3"/></svg></button>` + SECTIONS.filter(s=>!s.hidden&&s.id!=='work').map(s=>`<button data-go="${s.id}">${s.label}</button>`).join(''));
 let dockActive = 'home';
 /* ---------- dock: Work opens a project list ---------- */
 (()=>{ const btn=dock.querySelector('.dk-wk'); if(!btn) return;
