@@ -10495,7 +10495,9 @@ html body .gp-mk img{position:absolute!important;inset:0!important;width:100%!im
 html body .gp-mk img:first-child{opacity:1}
 @keyframes gpMk{0%{opacity:0}5%{opacity:1}25%{opacity:1}30%{opacity:0}100%{opacity:0}}
 html body .gp-mk-tag{position:absolute;left:14px;top:14px;z-index:2;display:inline-flex;align-items:center;gap:6px;height:24px;padding:0 10px;border-radius:999px;background:rgba(20,20,20,.72);color:#fff;font:600 10.5px/1 'Hanken Grotesk',var(--sans),sans-serif;letter-spacing:.08em;text-transform:uppercase;-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px)}
+html body .gp-mk-tag.ip-tag::before{background:#FF6A1A}
 html body .gp-mk-tag::before{content:"";width:6px;height:6px;border-radius:50%;background:#34A853}
+html body .gp-mk-tag.ip-tag::before{background:#FF6A1A}
 @media (prefers-reduced-motion:reduce){html body .gp-mk img{animation:none}html body .gp-mk img:not(:first-child){display:none}}
 
 html body #page .gpcs .gp-ppc .gp-mk img{object-position:50% 12%!important}
@@ -11526,8 +11528,9 @@ const ME={
 
 const WORK_ORDER = [0,2,4,6,5,1]; /* Koo & Kie (3) removed from the portfolio */
 const WORK_IP = [1]; /* in-progress projects: shown in a smaller row under the main grid */
-const WORK_MAIN = WORK_ORDER.filter(i=>!WORK_IP.includes(i));
-function ipRowHTML(){
+const WORK_MAIN = WORK_ORDER.slice(); /* in-progress projects sit in the main grid with a pill */
+function ipRowHTML(){ return ''; }
+function ipRowHTMLOld(){
   return `<div class="wk-ip"><div class="ix-head mono"><span>In progress</span><span>${WORK_IP.length} project${WORK_IP.length>1?'s':''}</span></div>${WORK_IP.map(i=>{const w=WORKS[i];
     return `<article class="ipc" data-tags="${w.tags.join(' ')}" data-go="case" data-i="${i}" role="link" tabindex="0" aria-label="Open ${esc(w.name)} case study">
       <div class="cover ipc-cv" style="background:${w.bg}">${coverMedia(w, esc(w.name)+' project cover')}</div>
@@ -11705,7 +11708,7 @@ let dockActive = 'home';
   const m=document.createElement('div'); m.id='wkmenu'; m.setAttribute('role','menu'); m.hidden=true;
   const item=i=>{ const w=WORKS[i]; const kw=(typeof CARD_KW!=='undefined'&&CARD_KW[w.k])?CARD_KW[w.k].slice(0,2).join(', '):w.disc; const ipp=(typeof WORK_IP!=='undefined'&&WORK_IP.includes(i))?`<span class="wkm-ip"><i></i>In progress</span>`:''; return `<button type="button" role="menuitem" data-go="case" data-i="${i}"><b>${esc(w.name)}${ipp}</b><small>${esc(kw)}</small></button>`; };
   const main=(typeof WORK_MAIN!=='undefined'?WORK_MAIN:WORK_ORDER), ip=(typeof WORK_IP!=='undefined'?WORK_IP:[]);
-  m.innerHTML=main.map(item).join('')+ip.map(item).join('');
+  m.innerHTML=main.map(item).join('');
   document.body.appendChild(m);
   const place=()=>{ const r=dock.getBoundingClientRect(), b=btn.getBoundingClientRect(); const w=Math.min(300,innerWidth-24); m.style.width=w+'px'; m.style.left=Math.max(12,Math.min(innerWidth-w-12,b.left+b.width/2-w/2))+'px'; m.style.bottom=(innerHeight-r.top+10)+'px'; };
   const open=()=>{ place(); m.hidden=false; requestAnimationFrame(()=>m.classList.add('on')); btn.setAttribute('aria-expanded','true'); btn.classList.add('open'); };
@@ -16023,10 +16026,10 @@ function workHTML(){
   return `<div class="wbar">
   <div class="seg" role="group" aria-label="View"><button aria-pressed="true" data-view="grid">Grid</button><button aria-pressed="false" data-view="list">Index</button></div></div>
   <div class="wlist" id="wlist" hidden>${WORK_ORDER.map((i,p)=>[WORKS[i],i,p]).map(([w,i,p])=>`<div data-tags="${w.tags.join(' ')}" class="wl">${rowHTML({go:'case', i, n:`(0${p+1})`, label:w.name, meta:`${w.client?w.client+' · ':''}${w.disc}${w.dur?' · '+w.dur:''}`, peek:'w'+i, sm:true})}</div>`).join('')}</div>
-  <div class="works wk2 wk3" id="wgrid">${(()=>{ const AR={klockit:'5/4',dpl:'16/11',police:'4/5',kookie:'5/4',sparrow:'5/4',wellness:'16/11',gpay:'4/5'};
+  <div class="works wk2 wk3" id="wgrid">${(()=>{ const AR={klockit:'5/4',dpl:'16/11',police:'16/11',kookie:'5/4',sparrow:'5/4',wellness:'16/11',gpay:'5/4'};
     const cards=WORKS.map((w,i)=>`
     <article class="card rv" data-size="${w.size}" data-tags="${w.tags.join(' ')}" data-go="case" data-i="${i}" role="link" tabindex="0" aria-label="Open ${esc(w.name)} case study" style="--ar:${AR[w.k]||'5/4'};--k:${(([a,b])=>(b/a).toFixed(4))((AR[w.k]||'5/4').split('/').map(Number))};order:${WORK_ORDER.indexOf(i)}">
-      <div class="cover" style="background:${w.bg}">${coverMedia(w, esc(w.name)+' project cover')}${CARD_PROOF[w.k]?`<div class="wk-o">${CARD_ROLE[w.k]?`<span class="wk-o-r">${CARD_ROLE[w.k]}</span>`:''}<span class="wk-o-k">${w.k==='dpl'?'Status':'Outcome'}</span><div class="wk-o-s">${CARD_PROOF[w.k].map(([n,l])=>`<span class="wk-o-i"><b>${n}</b><small>${l}</small></span>`).join('')}</div></div>`:(CARD_ROLE[w.k]?`<div class="wk-o wk-o-ro"><span class="wk-o-r">${CARD_ROLE[w.k]}</span></div>`:'')}</div>
+      <div class="cover" style="background:${w.bg}">${coverMedia(w, esc(w.name)+' project cover')}${WORK_IP.includes(i)?'<span class="gp-mk-tag ip-tag">In progress</span>':''}${CARD_PROOF[w.k]?`<div class="wk-o">${CARD_ROLE[w.k]?`<span class="wk-o-r">${CARD_ROLE[w.k]}</span>`:''}<span class="wk-o-k">${w.k==='dpl'?'Status':'Outcome'}</span><div class="wk-o-s">${CARD_PROOF[w.k].map(([n,l])=>`<span class="wk-o-i"><b>${n}</b><small>${l}</small></span>`).join('')}</div></div>`:(CARD_ROLE[w.k]?`<div class="wk-o wk-o-ro"><span class="wk-o-r">${CARD_ROLE[w.k]}</span></div>`:'')}</div>
       <span class="wk-k">${CARD_KW[w.k]?CARD_KW[w.k].map(esc).join(' · '):esc(w.disc)+(w.dur?' — '+esc(w.dur):'')}</span>
       <h3 class="wk-n">${esc(w.name)}${w.t?`<span class="wk-tl">${esc(w.t)}</span>`:''}</h3>
     </article>`);
@@ -16197,9 +16200,9 @@ let pendingPick = null;
 })();
 
 $('#xpHome').outerHTML = xpHTML() + toolsHTML();
-(()=>{ const g=$('#hgrid'); if(!g) return; const AR={klockit:'5/4',dpl:'16/11',police:'4/5',kookie:'5/4',sparrow:'5/4',wellness:'16/11',gpay:'4/5'};
+(()=>{ const g=$('#hgrid'); if(!g) return; const AR={klockit:'5/4',dpl:'16/11',police:'16/11',kookie:'5/4',sparrow:'5/4',wellness:'16/11',gpay:'5/4'};
   const cards=WORKS.map((w,i)=>`<article class="card rv" data-go="case" data-i="${i}" role="link" tabindex="0" aria-label="Open ${esc(w.name)} case study" style="--ar:${AR[w.k]||'5/4'};order:${WORK_ORDER.indexOf(i)}">
-      <div class="cover" style="background:${w.bg}">${coverMedia(w, esc(w.name)+' project cover')}${CARD_PROOF[w.k]?`<div class="wk-o">${CARD_ROLE[w.k]?`<span class="wk-o-r">${CARD_ROLE[w.k]}</span>`:''}<span class="wk-o-k">${w.k==='dpl'?'Status':'Outcome'}</span><div class="wk-o-s">${CARD_PROOF[w.k].map(([n,l])=>`<span class="wk-o-i"><b>${n}</b><small>${l}</small></span>`).join('')}</div></div>`:(CARD_ROLE[w.k]?`<div class="wk-o wk-o-ro"><span class="wk-o-r">${CARD_ROLE[w.k]}</span></div>`:'')}</div>
+      <div class="cover" style="background:${w.bg}">${coverMedia(w, esc(w.name)+' project cover')}${WORK_IP.includes(i)?'<span class="gp-mk-tag ip-tag">In progress</span>':''}${CARD_PROOF[w.k]?`<div class="wk-o">${CARD_ROLE[w.k]?`<span class="wk-o-r">${CARD_ROLE[w.k]}</span>`:''}<span class="wk-o-k">${w.k==='dpl'?'Status':'Outcome'}</span><div class="wk-o-s">${CARD_PROOF[w.k].map(([n,l])=>`<span class="wk-o-i"><b>${n}</b><small>${l}</small></span>`).join('')}</div></div>`:(CARD_ROLE[w.k]?`<div class="wk-o wk-o-ro"><span class="wk-o-r">${CARD_ROLE[w.k]}</span></div>`:'')}</div>
       <span class="wk-k">${CARD_KW[w.k]?CARD_KW[w.k].map(esc).join(' · '):esc(w.disc)+(w.dur?' — '+esc(w.dur):'')}</span>
       <h3 class="wk-n">${esc(w.name)}${w.t?`<span class="wk-tl">${esc(w.t)}</span>`:''}</h3>
     </article>`);
