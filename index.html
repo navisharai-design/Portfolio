@@ -16641,8 +16641,7 @@ document.querySelectorAll('.pcd:not([data-b])').forEach((sec,k)=>{sec.dataset.b=
   if(!d.name.trim()){say('Add your name so I know who wrote.',1);f.elements['name'].focus();return;}
   if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(d.email.trim())){say('Add an email I can reply to.',1);f.elements['email'].focus();return;}
   btn.disabled=true;say('Posting your card…');
-  try{const r=await fetch('https://formsubmit.co/ajax/'+TO,{method:'POST',headers:{'Content-Type':'application/json',Accept:'application/json'},body:JSON.stringify({name:d.name.trim(),email:d.email.trim(),message:d.message.trim(),_subject:'A postcard from your portfolio: '+d.name.trim(),_replyto:d.email.trim(),_template:'box',_captcha:'false'})});
-   const j=await r.json().catch(()=>({})); if(!r.ok||String(j.success)==='false') throw new Error(j.message||'failed');
+  try{const r=await fetch('https://api.web3forms.com/submit',{method:'POST',headers:{'Content-Type':'application/json',Accept:'application/json'},body:JSON.stringify({access_key:'1ad39651-fca0-4937-b3b5-0df80fb8f0ef',name:d.name.trim(),email:d.email.trim(),message:d.message.trim(),subject:'A postcard from your portfolio: '+d.name.trim(),from_name:'Portfolio postcard',replyto:d.email.trim(),botcheck:''})});    const j=await r.json().catch(()=>({})); if(!r.ok||j.success!==true) throw new Error(j.message||'failed');
    say('');f.reset();toast.classList.add('on');clearTimeout(sec._t);sec._t=setTimeout(()=>toast.classList.remove('on'),4000);
   }catch(err){const href='mailto:'+TO+'?subject='+encodeURIComponent('Hello from your portfolio')+'&body='+encodeURIComponent(d.message.trim()+'\n\n'+d.name.trim()+' ('+d.email.trim()+')');
    say('Couldn’t post it just now. <a href="'+href+'">Send it by email instead</a> or write to '+TO+'.',1);}
