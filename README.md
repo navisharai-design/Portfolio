@@ -2,13 +2,12 @@
 
 Strategic design portfolio of Navisha Rai (MDes Strategic Design Management, NID).
 
-The whole site is one self-contained file, `index.html`. Images, the interactive prototypes and the footer game are embedded in it, so there is no build step and nothing to install.
+The site is `index.html` plus an `assets/` folder of images and videos, and the About page song. Keeping media out of the HTML lets the page load quickly; images load as you scroll. There is no build step and nothing to install.
 
 ## Case studies
 - Klockit: proactive home care service
 - A Third Eye View: auditing a 52-year-old loom maker
 - Roger That: reducing divided attention at the police front desk
-- Koo & Kie: a pairing-led cookie brand (concept)
 - Chirpmonks: SurveySparrow illustration system
 - Wellness tourism in India: design research
 - PocketPal: save first, spend what's left
