@@ -12385,7 +12385,7 @@ const RICON={
   audit:'<rect x="5" y="4.2" width="14" height="16.8" rx="1.5"/><path d="M9 4.2V3h6v1.2"/><path d="m8.8 12.6 2.2 2.2 4.2-4.4"/>',
   compass:'<circle cx="12" cy="12" r="8.8"/><path d="m15.6 8.4-2.2 5-5 2.2 2.2-5z"/>'
 };
-function crole(p, items, extra=''){
+function crole(p, items, extra=''){ return ''; /* My role sections removed: not standard across cases */
   return `<section class="cs-rolesec" id="${p}-role" aria-label="My role">
     <div class="cs-rl"><i></i>My role</div>
     <ol class="cs-role" style="--n:${items.length}">${items.map(([ic,t,d],i)=>`<li><span class="cs-ri"><span><svg viewBox="0 0 24 24" aria-hidden="true">${RICON[ic]}</svg></span></span><small>0${i+1}</small><b>${t}</b><p>${d}</p></li>`).join('')}</ol>${extra}
@@ -12995,11 +12995,7 @@ function pixCaseHTML(){
     <p class="hmw px-hmw"><span>How might we</span> <em>give a growing team of designers and marketers one illustration language, so every new visual still feels like SurveySparrow?</em></p>
   </header>
 
-  <section class="pr-s" id="px-role">
-    ${lab('My role')}
-    <div class="pr-ph">${[['search','Research','4 methods',['Review mining','Case studies','Stakeholder surveys','Persona interviews'],'Keywords from reviews and case studies, and talks with marketing, product and UX/UI.'],['pen','System','3 styles · 4 shapes',['Style directions','Shape language','Rules','Character family'],'Three directions reviewed with the team, then a componentised character family.'],['star','Handover','75-page book',['Web pages','Empty states','Harris the Sparrow','Guidelines'],'Applied across the product, then documented so others can build on it.']].map(([i,t,m,p,d])=>`<div class="pr-phc">
-      <div class="pr-phh">${ic(i)}<span>${m}</span></div><h3>${t}</h3><p>${d}</p>${chips(p,'o')}</div>`).join('')}</div>
-  </section>
+  
 
   <section class="hs tl-sec" id="px-process"><span class="eyebrow">Process · 16 weeks · 6 steps</span>
     <figure class="px-dd">${pxDD()}</figure>
