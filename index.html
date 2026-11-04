@@ -11221,6 +11221,8 @@ html body #page #gp-understand .gp-charts .gp-chart{grid-column:1/-1!important;m
 #wkmenu b{font:600 15px/1.25 'Hanken Grotesk',sans-serif}
 #wkmenu small{font:400 13px/1.3 'Hanken Grotesk',sans-serif;color:#6b6b66}
 #wkmenu hr{width:calc(100% - 20px);margin:6px 10px;border:0;border-top:1px solid rgba(0,0,0,.12)}
+#wkmenu b .wkm-ip{display:inline-flex;align-items:center;gap:6px;margin-left:8px;padding:4px 8px;border:1px solid rgba(20,20,20,.18);border-radius:999px;font:500 10px/1 var(--mono,ui-monospace,monospace);letter-spacing:.1em;text-transform:uppercase;color:#141414;vertical-align:2px;white-space:nowrap}
+#wkmenu b .wkm-ip i{width:6px;height:6px;border-radius:50%;background:#FF6A1A}
 #wkmenu .wk-sub{padding:4px 14px 2px;font:600 11px/1 'Hanken Grotesk',sans-serif;letter-spacing:.12em;text-transform:uppercase;color:#8a8a84}
 @media (prefers-reduced-motion:reduce){#wkmenu{transition:none}}
 
@@ -11701,9 +11703,9 @@ let dockActive = 'home';
 /* ---------- dock: Work opens a project list ---------- */
 (()=>{ const btn=dock.querySelector('.dk-wk'); if(!btn) return;
   const m=document.createElement('div'); m.id='wkmenu'; m.setAttribute('role','menu'); m.hidden=true;
-  const item=i=>{ const w=WORKS[i]; const kw=(typeof CARD_KW!=='undefined'&&CARD_KW[w.k])?CARD_KW[w.k].slice(0,2).join(', '):w.disc; return `<button type="button" role="menuitem" data-go="case" data-i="${i}"><b>${esc(w.name)}</b><small>${esc(kw)}</small></button>`; };
+  const item=i=>{ const w=WORKS[i]; const kw=(typeof CARD_KW!=='undefined'&&CARD_KW[w.k])?CARD_KW[w.k].slice(0,2).join(', '):w.disc; const ipp=(typeof WORK_IP!=='undefined'&&WORK_IP.includes(i))?`<span class="wkm-ip"><i></i>In progress</span>`:''; return `<button type="button" role="menuitem" data-go="case" data-i="${i}"><b>${esc(w.name)}${ipp}</b><small>${esc(kw)}</small></button>`; };
   const main=(typeof WORK_MAIN!=='undefined'?WORK_MAIN:WORK_ORDER), ip=(typeof WORK_IP!=='undefined'?WORK_IP:[]);
-  m.innerHTML=main.map(item).join('')+(ip.length?`<hr><span class="wk-sub">In progress</span>`+ip.map(item).join(''):'');
+  m.innerHTML=main.map(item).join('')+(ip.length?`<hr>`+ip.map(item).join(''):'');
   document.body.appendChild(m);
   const place=()=>{ const r=dock.getBoundingClientRect(), b=btn.getBoundingClientRect(); const w=Math.min(300,innerWidth-24); m.style.width=w+'px'; m.style.left=Math.max(12,Math.min(innerWidth-w-12,b.left+b.width/2-w/2))+'px'; m.style.bottom=(innerHeight-r.top+10)+'px'; };
   const open=()=>{ place(); m.hidden=false; requestAnimationFrame(()=>m.classList.add('on')); btn.setAttribute('aria-expanded','true'); btn.classList.add('open'); };
@@ -16682,7 +16684,10 @@ document.querySelectorAll('.pcd:not([data-b])').forEach((sec,k)=>{sec.dataset.b=
   A.addEventListener('timeupdate',()=>{ const p=A.duration?A.currentTime/A.duration*100:0; fill.style.width=p+'%'; bar.setAttribute('aria-valuenow',Math.round(p)); });
   ['play','pause','ended'].forEach(e=>A.addEventListener(e,sync));
   A.addEventListener('error',()=>{ P.classList.add('err'); sync(); });
-  const check=()=>{ const on=!!document.querySelector('#pContent .abz'); P.classList.toggle('on',on); if(!on&&!A.paused) A.pause(); };
-  new MutationObserver(check).observe(document.body,{childList:true,subtree:true}); check();
+  const check=()=>{ const pg=document.getElementById('page'); const on=!!document.querySelector('#pContent .abz') && !(pg&&pg.hidden) && (!location.hash||location.hash==='#about'); P.classList.toggle('on',on); if(!on&&!A.paused) A.pause(); };
+  new MutationObserver(check).observe(document.body,{childList:true,subtree:true,attributes:true,attributeFilter:['hidden']});
+  ['hashchange','popstate','pagehide'].forEach(e=>addEventListener(e,check));
+  document.addEventListener('visibilitychange',()=>{ if(document.hidden&&!A.paused) A.pause(); });
+  check();
 })();
 </script></body></html>
