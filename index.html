@@ -11242,6 +11242,13 @@ html body .gfoot .g-cta{display:inline-flex;align-items:center;gap:8px;align-sel
 html body .gfoot .g-cta:hover,html body .gfoot .g-cta:focus-visible{background:#F4F4F2!important;color:#0D0D0D!important;border-color:#F4F4F2!important}
 #page .rx-note{margin:10px 0 0;font:400 14px/1.5 var(--sans,"Hanken Grotesk",sans-serif);color:#5c5c5a;max-width:62ch}
 
+
+/* about: replay the scroll story once it ends */
+#page .abz .abz-replay{position:absolute;left:50%;top:clamp(96px,14vh,140px);bottom:auto;z-index:20;display:inline-flex;align-items:center;gap:8px;height:44px;padding:0 20px;border:0;border-radius:999px;background:#141414;color:#fff;font:500 15px/1 'Hanken Grotesk',sans-serif;cursor:pointer;box-shadow:0 10px 24px -10px rgba(0,0,0,.45);opacity:0;transform:translate(-50%,-8px);pointer-events:none;transition:opacity .35s ease,transform .35s ease}
+#page .abz .abz-replay svg{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+#page .abz.zfin .abz-replay{opacity:1;transform:translate(-50%,0);pointer-events:auto}
+#page .abz .abz-replay:hover,#page .abz .abz-replay:focus-visible{background:#333;outline:none}
+@media (max-width:700px){#page .abz .abz-replay{top:clamp(110px,16vh,150px)}}
 /* hero statement in the serif used for headers */
 html body #home .lhero{align-items:center!important;padding-bottom:clamp(24px,4vw,48px)!important}
 html body #home .hl-stage:not(.hl-gif){aspect-ratio:585/400!important}
@@ -16582,12 +16589,14 @@ upd();})();</script>
       const cap=dom.cap; if(cap){ const nn=el.querySelector('.abz-note[data-n="'+ck+'"] .abz-nin'); cap.innerHTML=nn?nn.innerHTML:''; cap.style.setProperty('--nc',nn?getComputedStyle(nn).getPropertyValue('--nc'):''); cap.classList.toggle('on',!!nn); }
       const cur=el.querySelector('.abz-note[data-n="'+ck+'"]')?'':Tg.lab; if(dom.st.textContent!==cur) dom.st.textContent=cur; }
     const curL=dom.st.textContent;
-    el.classList.toggle('zin',Tg.p>.02&&!!curL); el.classList.toggle('zend',Tg.p>.02);
+    el.classList.toggle('zin',Tg.p>.02&&!!curL); el.classList.toggle('zend',Tg.p>.02); el.classList.toggle('zfin',Tg.p>.985);
     if(!done){ el.classList.add('moving'); clearTimeout(idle); raf=requestAnimationFrame(frame); }
     else { clearTimeout(idle); idle=setTimeout(()=>el&&el.classList.remove('moving'),180); }
   }
   const kick=()=>{ if(!raf) raf=requestAnimationFrame(frame); };
-  function bind(){ const n=document.querySelector('#page .abz'); if(!n||n===el) return; el=n; dom=null; C=null; lastCk=null; lastInv=0; addEventListener('scroll',kick,{passive:true}); addEventListener('resize',kick); kick(); }
+  function bind(){ const n=document.querySelector('#page .abz'); if(!n||n===el) return; el=n; dom=null; C=null; lastCk=null; lastInv=0;
+    const vp=n.querySelector('.abz-vp'); if(vp&&!vp.querySelector('.abz-replay')){ const rb=document.createElement('button'); rb.type='button'; rb.className='abz-replay'; rb.innerHTML='<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12a8 8 0 1 0 2.4-5.7M4 4v4.5h4.5"/></svg>Start again'; rb.addEventListener('click',()=>{ const top=el.getBoundingClientRect().top+scrollY; C=null; lastCk=null; window.scrollTo({top:Math.max(0,top-1),behavior:'instant'}); kick(); }); vp.appendChild(rb); }
+    addEventListener('scroll',kick,{passive:true}); addEventListener('resize',kick); kick(); }
   new MutationObserver(bind).observe(document.body,{childList:true,subtree:true});
   bind();
 })();
