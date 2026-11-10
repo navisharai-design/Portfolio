@@ -11296,29 +11296,6 @@ html body #home #hgrid.wrows .wrow:hover ul.wr-k li{border-color:#c4c4c4}
 html body #home #hgrid.wrows .wr-ip{margin-top:2px}
 html body #home #hgrid.wrows .wrow:hover .wr-n{text-decoration:underline;text-underline-offset:6px;text-decoration-thickness:1px}
 @media (max-width:760px){html body #home #hgrid.wrows .wrow{padding:32px 0}}
-
-/* homepage: the page turns black while the work is on screen */
-html body #page,html body #home,html body #home > div,html body #home .hdr{transition:background-color .7s ease,color .7s ease!important}
-html body #home .hwork .ix-head,html body #home #hgrid.wrows .wr-n,html body #home #hgrid.wrows .wr-d,html body #home #hgrid.wrows ul.wr-k li,html body #home #hgrid.wrows .wrow,html body #home #hgrid.wrows,html body #home .hdr nav a,html body #home .hdr nav button,html body #home #hgrid.wrows .wr-ip{transition:color .7s ease,border-color .7s ease,background-color .7s ease}
-html body #home .hdr .hl-nms{transition:filter .7s ease}
-html.wkd body #page#page#page#page,html.wkd body #home#home#home#home#home#home#home#home,html.wkd body #home#home#home#home#home#home#home#home > div{background-color:#0d0d0d!important}
-html.wkd body #home#home#home#home#home#home#home#home .hdr{background-color:rgba(13,13,13,.94)!important;box-shadow:none!important;border-color:transparent!important}
-html.wkd body #home#home#home#home#home#home#home#home .hdr .hl-nms{filter:invert(1)}
-html.wkd body #home#home#home#home#home#home#home#home .hdr a,html.wkd body #home#home#home#home#home#home#home#home .hdr button:not(.logo){color:#d9d9d9!important}
-html.wkd body #home#home#home#home#home#home#home#home .hwork .ix-head,html.wkd body #home#home#home#home#home#home#home#home .hwork .ix-head span{color:#9a9a9a!important}
-html.wkd body #home#home#home#home#home#home#home#home #hgrid.wrows,html.wkd body #home#home#home#home#home#home#home#home #hgrid.wrows .wrow{border-color:#262626!important}
-html.wkd body #home#home#home#home#home#home#home#home #hgrid.wrows .wr-n{color:#fff!important}
-html.wkd body #home#home#home#home#home#home#home#home #hgrid.wrows .wr-d{color:#c9c9c9!important}
-html.wkd body #home#home#home#home#home#home#home#home #hgrid.wrows ul.wr-k li{background:transparent!important;border-color:#3a3a3a!important;color:#d0d0d0!important}
-html.wkd body #home#home#home#home#home#home#home#home #hgrid.wrows .wrow:hover ul.wr-k li{border-color:#5a5a5a!important}
-html.wkd body #home#home#home#home#home#home#home#home #hgrid.wrows .wr-ip{border-color:#3a3a3a!important;color:#fff!important}
-html body #home .logos img,html body #home .logos svg{transition:filter .7s ease}
-html.wkd body #home#home#home#home .logos img,html.wkd body #home#home#home#home .logos svg{filter:invert(1) brightness(1.1)}
-html body #home .logos .lg-i{transition:background-color .7s ease}
-html.wkd body #home#home#home#home .logos .lg-i{background-color:#e6e6e6!important}
-html.wkd body #dock#dock#dock#dock{background-color:#fff!important;color:#141414!important}
-html.wkd body #dock#dock#dock#dock a,html.wkd body #dock#dock#dock#dock button{color:#141414!important}
-@media (prefers-reduced-motion:reduce){html body #page,html body #home,html body #home > div{transition:none!important}}
 /* hero statement in the serif used for headers */
 html body #home .lhero{align-items:center!important;padding-bottom:clamp(24px,4vw,48px)!important}
 html body #home .hl-stage:not(.hl-gif){aspect-ratio:585/400!important}
@@ -16739,15 +16716,4 @@ document.querySelectorAll('.pcd:not([data-b])').forEach((sec,k)=>{sec.dataset.b=
   document.addEventListener('visibilitychange',()=>{ if(document.hidden&&!A.paused) A.pause(); });
   check();
 })();
-</script><script>
-/* homepage: dark while the work section fills the middle of the screen */
-(function(){ const pg=document.getElementById('page'); if(!pg) return; let raf=0;
-  const check=()=>{ raf=0; const home=document.getElementById('home'), w=document.querySelector('#home .hwork:not(.hhow)');
-    let on=false; if(home&&!home.hidden&&w&&w.getClientRects().length){ const r=w.getBoundingClientRect(), m=innerHeight*.5; on=r.top<m&&r.bottom>m; }
-    document.documentElement.classList.toggle('wkd',on); };
-  const q=()=>{ if(!raf) raf=requestAnimationFrame(check); };
-  addEventListener('scroll',q,{passive:true}); addEventListener('resize',q);
-  new MutationObserver(q).observe(document.body,{attributes:true,subtree:true,attributeFilter:['hidden']}); q();
-})();
-</script>
-</body></html>
+</script></body></html>
