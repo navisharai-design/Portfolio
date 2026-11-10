@@ -11283,6 +11283,19 @@ html body #home #hgrid.wrows .wrow:focus-visible .cover{outline:2px solid #14141
 @media (max-width:760px){html body #home #hgrid.wrows{gap:56px!important;row-gap:56px!important}
  html body #home #hgrid.wrows .wrow{grid-template-columns:minmax(0,1fr);gap:18px}
  html body #home #hgrid.wrows .cover{order:-1}}
+
+/* work rows: dividers, top alignment, keyword pills */
+html body #home #hgrid.wrows{gap:0!important;row-gap:0!important;border-top:1px solid #e7e7e7}
+html body #home #hgrid.wrows .wrow{align-items:start!important;padding:clamp(36px,5vw,64px) 0;border-bottom:1px solid #e7e7e7}
+html body #home #hgrid.wrows .wr-txt{gap:14px;padding-top:4px}
+html body #home #hgrid.wrows .wr-n{border-bottom:0!important;padding-bottom:0!important}
+html body #home #hgrid.wrows .wr-d{margin:0!important;color:#3a3a3a}
+html body #home #hgrid.wrows ul.wr-k{list-style:none;margin:6px 0 0;padding:0;display:flex;flex-wrap:wrap;gap:8px}
+html body #home #hgrid.wrows ul.wr-k li{display:inline-flex;align-items:center;height:28px;padding:0 12px;border:1px solid #dcdcdc;border-radius:999px;background:#fff;font:400 12.5px/1 'Hanken Grotesk',system-ui,sans-serif;color:#3a3a3a;white-space:nowrap}
+html body #home #hgrid.wrows .wrow:hover ul.wr-k li{border-color:#c4c4c4}
+html body #home #hgrid.wrows .wr-ip{margin-top:2px}
+html body #home #hgrid.wrows .wrow:hover .wr-n{text-decoration:underline;text-underline-offset:6px;text-decoration-thickness:1px}
+@media (max-width:760px){html body #home #hgrid.wrows .wrow{padding:32px 0}}
 /* hero statement in the serif used for headers */
 html body #home .lhero{align-items:center!important;padding-bottom:clamp(24px,4vw,48px)!important}
 html body #home .hl-stage:not(.hl-gif){aspect-ratio:585/400!important}
@@ -16212,7 +16225,7 @@ $('#xpHome').outerHTML = xpHTML() + toolsHTML();
     </article>`);
   const rows=WORK_MAIN.map(i=>{ const w=WORKS[i]; const kw=CARD_KW[w.k]?CARD_KW[w.k].map(esc).join(' | '):esc(w.disc||'');
     return `<article class="wrow rv" data-go="case" data-i="${i}" role="link" tabindex="0" aria-label="Open ${esc(w.name)} case study">
-      <div class="wr-txt"><h3 class="wr-n">${esc(w.name)}</h3>${w.t?`<p class="wr-d">${esc(w.t)}</p>`:''}<span class="wr-dash" aria-hidden="true">–</span><span class="wr-k">${kw}</span>${WORK_IP.includes(i)?'<span class="wr-ip"><i></i>In progress</span>':''}</div>
+      <div class="wr-txt"><h3 class="wr-n">${esc(w.name)}</h3>${w.t?`<p class="wr-d">${esc(w.t)}</p>`:''}<ul class="wr-k">${(CARD_KW[w.k]||[]).map(t=>`<li>${esc(t)}</li>`).join('')}</ul>${WORK_IP.includes(i)?'<span class="wr-ip"><i></i>In progress</span>':''}</div>
       <div class="cover" style="background:${w.bg}">${coverMedia(w, esc(w.name)+' project cover')}</div>
     </article>`; });
   g.classList.add('wrows'); g.innerHTML=rows.join('');
