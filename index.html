@@ -11302,10 +11302,10 @@ html body #home .nhero .nh-main .nh-tags{flex-direction:row!important;flex-wrap:
 html body #home .nhero .nh-main .nh-tags li+li::before{content:'·';margin:0 10px;color:#a8a8a8}
 @media (max-width:760px){html body #home .nhero .nh-main .nh-tags{font-size:11px!important;letter-spacing:.08em;gap:6px 16px!important}html body #home .nhero .nh-main .nh-tags li+li::before{content:none}}
 
-html body :is(#page,#home) .wk-pills{list-style:none;margin:14px 0 0;padding:0;display:flex;flex-wrap:wrap;gap:6px}
+html body :is(#page,#home) .wk-pills{list-style:none;margin:12px 0 0;padding:0;display:flex;flex-wrap:wrap;gap:6px}
 html body :is(#page,#home) .wk-pills li{display:inline-flex;align-items:center;height:26px;padding:0 11px;border:1px solid #dcdcdc;border-radius:999px;font:400 12px/1 'Hanken Grotesk',system-ui,sans-serif;letter-spacing:0;text-transform:none;color:#3a3a3a;white-space:nowrap;background:#fff;transition:border-color .2s}
 html body :is(#page,#home) .card:hover .wk-pills li{border-color:#bdbdbd}
-html body :is(#page,#home) .wk-pills + .wk-n{margin-top:10px!important}
+html body :is(#page,#home) .card > .wk-n{margin-top:14px!important}
 /* hero statement in the serif used for headers */
 html body #home .lhero{align-items:center!important;padding-bottom:clamp(24px,4vw,48px)!important}
 html body #home .hl-stage:not(.hl-gif){aspect-ratio:585/400!important}
@@ -16057,8 +16057,8 @@ function workHTML(){
     const cards=WORKS.map((w,i)=>`
     <article class="card rv" data-size="${w.size}" data-tags="${w.tags.join(' ')}" data-go="case" data-i="${i}" role="link" tabindex="0" aria-label="Open ${esc(w.name)} case study" style="--ar:${AR[w.k]||'5/4'};--k:${(([a,b])=>(b/a).toFixed(4))((AR[w.k]||'5/4').split('/').map(Number))};order:${WORK_ORDER.indexOf(i)}">
       <div class="cover" style="background:${w.bg}">${coverMedia(w, esc(w.name)+' project cover')}${WORK_IP.includes(i)?'<span class="gp-mk-tag ip-tag">In progress</span>':''}${CARD_PROOF[w.k]?`<div class="wk-o">${CARD_ROLE[w.k]?`<span class="wk-o-r">${CARD_ROLE[w.k]}</span>`:''}<span class="wk-o-k">${w.k==='dpl'?'Status':'Outcome'}</span><div class="wk-o-s">${CARD_PROOF[w.k].map(([n,l])=>`<span class="wk-o-i"><b>${n}</b><small>${l}</small></span>`).join('')}</div></div>`:(CARD_ROLE[w.k]?`<div class="wk-o wk-o-ro"><span class="wk-o-r">${CARD_ROLE[w.k]}</span></div>`:'')}</div>
-      <ul class="wk-pills">${(CARD_KW[w.k]||[w.disc]).filter(Boolean).map(t=>`<li>${esc(t)}</li>`).join('')}</ul>
       <h3 class="wk-n">${esc(w.name)}${w.t?`<span class="wk-tl">${esc(w.t)}</span>`:''}</h3>
+      <ul class="wk-pills">${(CARD_KW[w.k]||[w.disc]).filter(Boolean).map(t=>`<li>${esc(t)}</li>`).join('')}</ul>
     </article>`);
     return `<div class="wk-col">${WORK_MAIN.filter((_,p)=>p%2===0).map(i=>cards[i]).join('')}</div><div class="wk-col">${WORK_MAIN.filter((_,p)=>p%2===1).map(i=>cards[i]).join('')}</div>`; })()}</div>${ipRowHTML()}`;
 }
@@ -16230,8 +16230,8 @@ $('#xpHome').outerHTML = xpHTML() + toolsHTML();
 (()=>{ const g=$('#hgrid'); if(!g) return; const AR={klockit:'5/4',dpl:'16/11',police:'16/11',kookie:'5/4',sparrow:'5/4',wellness:'16/11',gpay:'5/4'};
   const cards=WORKS.map((w,i)=>`<article class="card rv" data-go="case" data-i="${i}" role="link" tabindex="0" aria-label="Open ${esc(w.name)} case study" style="--ar:${AR[w.k]||'5/4'};order:${WORK_ORDER.indexOf(i)}">
       <div class="cover" style="background:${w.bg}">${coverMedia(w, esc(w.name)+' project cover')}${WORK_IP.includes(i)?'<span class="gp-mk-tag ip-tag">In progress</span>':''}${CARD_PROOF[w.k]?`<div class="wk-o">${CARD_ROLE[w.k]?`<span class="wk-o-r">${CARD_ROLE[w.k]}</span>`:''}<span class="wk-o-k">${w.k==='dpl'?'Status':'Outcome'}</span><div class="wk-o-s">${CARD_PROOF[w.k].map(([n,l])=>`<span class="wk-o-i"><b>${n}</b><small>${l}</small></span>`).join('')}</div></div>`:(CARD_ROLE[w.k]?`<div class="wk-o wk-o-ro"><span class="wk-o-r">${CARD_ROLE[w.k]}</span></div>`:'')}</div>
-      <ul class="wk-pills">${(CARD_KW[w.k]||[w.disc]).filter(Boolean).map(t=>`<li>${esc(t)}</li>`).join('')}</ul>
       <h3 class="wk-n">${esc(w.name)}${w.t?`<span class="wk-tl">${esc(w.t)}</span>`:''}</h3>
+      <ul class="wk-pills">${(CARD_KW[w.k]||[w.disc]).filter(Boolean).map(t=>`<li>${esc(t)}</li>`).join('')}</ul>
     </article>`);
   g.innerHTML=`<div class="wk-col">${WORK_MAIN.filter((_,p)=>p%2===0).map(i=>cards[i]).join('')}</div><div class="wk-col">${WORK_MAIN.filter((_,p)=>p%2===1).map(i=>cards[i]).join('')}</div>`;
   g.insertAdjacentHTML('afterend',ipRowHTML());
