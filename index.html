@@ -16268,12 +16268,7 @@ $('#xpHome').outerHTML = xpHTML() + toolsHTML();
       <span class="wk-k">${CARD_KW[w.k]?CARD_KW[w.k].map(esc).join(' · '):esc(w.disc)+(w.dur?' — '+esc(w.dur):'')}</span>
       <h3 class="wk-n">${esc(w.name)}${w.t?`<span class="wk-tl">${esc(w.t)}</span>`:''}</h3>
     </article>`);
-  const rows=WORK_MAIN.map(i=>{ const w=WORKS[i]; const kw=CARD_KW[w.k]?CARD_KW[w.k].map(esc).join(' | '):esc(w.disc||'');
-    return `<article class="wrow rv" data-go="case" data-i="${i}" role="link" tabindex="0" aria-label="Open ${esc(w.name)} case study">
-      <div class="wr-txt"><h3 class="wr-n">${esc(w.name)}</h3>${w.t?`<p class="wr-d">${esc(w.t)}</p>`:''}<ul class="wr-k">${(CARD_KW[w.k]||[]).map(t=>`<li>${esc(t)}</li>`).join('')}</ul>${WORK_IP.includes(i)?'<span class="wr-ip"><i></i>In progress</span>':''}</div>
-      <div class="cover" style="background:${w.bg}">${coverMedia(w, esc(w.name)+' project cover')}</div>
-    </article>`; });
-  g.classList.add('wrows'); g.innerHTML=rows.join('');
+  g.innerHTML=`<div class="wk-col">${WORK_MAIN.filter((_,p)=>p%2===0).map(i=>cards[i]).join('')}</div><div class="wk-col">${WORK_MAIN.filter((_,p)=>p%2===1).map(i=>cards[i]).join('')}</div>`;
   g.insertAdjacentHTML('afterend',ipRowHTML());
   const hd=document.querySelector('#hwH+span'); if(hd) hd.textContent=WORK_MAIN.length+' projects';
 })();
@@ -16787,7 +16782,7 @@ document.querySelectorAll('.pcd:not([data-b])').forEach((sec,k)=>{sec.dataset.b=
     if(gl) gl.querySelectorAll('.cgx-s').forEach(c=>{ const k=(c.querySelector('.cgx-k')||{}).textContent||''; const body=c.cloneNode(true); const hd=body.querySelector('.cgx-h'); if(hd) hd.remove(); items.push([k,body.innerHTML,c.classList.contains('cgx-o')]); });
     const ov=a.querySelector(':scope > section.cs-ov');
     if(ov){ const dl=ov.querySelector('dl'); if(dl) items.push(['Role, timeline & tools','<dl class="std-dl">'+dl.innerHTML+'</dl>',false]); }
-    const row=[...document.querySelectorAll('#hgrid .wrow')].find(r=>(r.querySelector('.wr-n')||{}).textContent===NAME[pre]);
+    const row=[...document.querySelectorAll('#hgrid [data-go="case"]')].find(r=>{ const n=r.querySelector('.wk-n'); const t=n?(n.firstChild&&n.firstChild.textContent||''):((r.querySelector('.wr-n')||{}).textContent||''); return t.trim()===NAME[pre]; });
     const cov=row&&row.querySelector('.cover');
     const L=document.createElement('div'); L.className='std-l';
     if(top) L.appendChild(top); L.appendChild(h1);
