@@ -16376,7 +16376,7 @@ upd();})();</script>
   const reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
   // the head sprite from the landing page: four frames (front-left, three-quarter, back, facing right)
   const spr=new Image(); let sprOK=false;
-  const src=(getComputedStyle(document.querySelector('.hl-head')||document.body).getPropertyValue('--sprite')||'').trim().replace(/^url\(["']?|["']?\)$/g,'');
+  const src=((getComputedStyle(document.querySelector('.hl-head')||document.body).getPropertyValue('--sprite')||'').trim().replace(/^url\(["']?|["']?\)$/g,''))||'assets/3668f64f97a0.webp';
   if(src){ spr.onload=()=>{sprOK=true;}; spr.src=src; }
   let W=0,H=0,DPR=1,GY=0;
   function size(){ const r=host.querySelector('.gg-stage').getBoundingClientRect(); DPR=Math.min(2,devicePixelRatio||1); W=Math.max(280,r.width); H=r.height; cv.width=W*DPR; cv.height=H*DPR; ctx.setTransform(DPR,0,0,DPR,0,0); GY=H-46; }
