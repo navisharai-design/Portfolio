@@ -11297,6 +11297,10 @@ html body #home #hgrid.wrows .wr-ip{margin-top:2px}
 html body #home #hgrid.wrows .wrow:hover .wr-n{text-decoration:underline;text-underline-offset:6px;text-decoration-thickness:1px}
 @media (max-width:760px){html body #home #hgrid.wrows .wrow{padding:32px 0}}
 
+
+html body #home .nhero .nh-main .nh-tags{flex-direction:row!important;flex-wrap:wrap;gap:6px 0!important;margin:0 0 -8px!important;font:500 12px/1.4 'Hanken Grotesk',system-ui,sans-serif!important;letter-spacing:.12em;text-transform:uppercase;color:#6b6b6b!important;text-align:left!important}
+html body #home .nhero .nh-main .nh-tags li+li::before{content:'·';margin:0 10px;color:#a8a8a8}
+@media (max-width:760px){html body #home .nhero .nh-main .nh-tags{font-size:10.5px!important;letter-spacing:.06em}html body #home .nhero .nh-main .nh-tags li+li::before{margin:0 6px}}
 /* hero statement in the serif used for headers */
 html body #home .lhero{align-items:center!important;padding-bottom:clamp(24px,4vw,48px)!important}
 html body #home .hl-stage:not(.hl-gif){aspect-ratio:585/400!important}
@@ -11342,9 +11346,9 @@ html body #home .lhero h1.stmt .st-a,html body #home .lhero h1.stmt .st-b{font-f
   <div class="nhero">
   <div class="nh-meta">
     <p class="nh-k">Selected work<br>2024 — 2026</p>
-    <ul class="nh-tags"><li>Design</li><li>Research</li><li>Systems thinking</li><li>Strategy</li></ul>
   </div>
   <div class="nh-main">
+    <ul class="nh-tags"><li>Design</li><li>Research</li><li>Systems thinking</li><li>Strategy</li></ul>
     <h1 class="nh-stmt">Hello, I’m Navisha – a strategic designer at NID. I design to <span class="nh-acc">create value for both <em>people</em> and <em>businesses</em>.</span> I make sense of what exists, connect the dots and design for what comes next.</h1>
     <a class="nh-go" href="#hwH" onclick="event.preventDefault();var t=document.querySelector('#home .hwork:not(.hhow)');if(t)t.scrollIntoView({behavior:'smooth',block:'start'})"><span>See work</span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M17 7 7 17M7 8v9h9"/></svg></a>
   </div>
