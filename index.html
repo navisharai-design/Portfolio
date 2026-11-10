@@ -11257,7 +11257,7 @@ html body #home .nhero .nh-tags{list-style:none;margin:0;padding:0;display:flex;
 html body #home .nhero .nh-main{display:flex;flex-direction:column;gap:clamp(28px,4vw,48px);min-width:0}
 html body #home .nhero .nh-stmt{margin:0;max-width:19em;font-family:'NR Display','Hanken Grotesk',system-ui,-apple-system,'Helvetica Neue',Arial,sans-serif;font-weight:400;font-size:clamp(23px,2.5vw,34px);line-height:1.25;letter-spacing:-.02em;color:#141414;text-wrap:pretty}
 html body #home .nhero .nh-stmt em{font-style:italic}
-html body #home .nhero .nh-stmt .nh-acc{color:#D2551F}
+html body #home .nhero .nh-stmt .nh-acc{color:#1F3BFF}
 html body #home .nhero .nh-go{align-self:flex-start;display:inline-flex;align-items:center;gap:10px;font:500 15px/1 'Hanken Grotesk',system-ui,sans-serif;color:#141414;text-decoration:none;border-bottom:1px solid currentColor;padding-bottom:6px}
 html body #home .nhero .nh-go svg{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;transition:transform .25s}
 html body #home .nhero .nh-go:hover svg{transform:translate(2px,2px)}
@@ -11296,6 +11296,51 @@ html body #home #hgrid.wrows .wrow:hover ul.wr-k li{border-color:#c4c4c4}
 html body #home #hgrid.wrows .wr-ip{margin-top:2px}
 html body #home #hgrid.wrows .wrow:hover .wr-n{text-decoration:underline;text-underline-offset:6px;text-decoration-thickness:1px}
 @media (max-width:760px){html body #home #hgrid.wrows .wrow{padding:32px 0}}
+
+/* case studies: standard information block */
+html body #page #pContent .std-hide,html body #page#page#page#page#page#page#page#page #pContent .std-hide{display:none!important}
+html body #page #pContent article.std-shell > header.sh-head.std-on{display:grid!important;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(28px,5vw,72px);align-items:stretch;padding-bottom:clamp(40px,6vw,80px)!important;margin-bottom:clamp(32px,5vw,64px)!important;border-bottom:1px solid #e7e7e7}
+html body #page #pContent header.sh-head.std-on .std-l{display:flex;flex-direction:column;min-width:0}
+html body #page #pContent header.sh-head.std-on .std-l > .sh-top{display:block!important;margin:0 0 20px!important}
+html body #page #pContent header.sh-head.std-on .std-l > .sh-h1{display:block!important;margin:0!important;font:400 clamp(32px,3.6vw,52px)/1.06 'Hanken Grotesk',system-ui,sans-serif!important;letter-spacing:-.025em!important;color:#141414!important;max-width:14em}
+html body #page #pContent header.sh-head.std-on .std-lede{margin:22px 0 0!important;max-width:32em;font:400 16px/1.6 'Hanken Grotesk',system-ui,sans-serif!important;color:#3a3a3a!important}
+html body #page #pContent header.sh-head.std-on .std-acc{margin-top:auto;padding-top:clamp(32px,5vw,56px);border-bottom:1px solid #dedede}
+html body #page #pContent header.sh-head.std-on .std-i{border-top:1px solid #dedede}
+html body #page #pContent header.sh-head.std-on .std-i summary{list-style:none;display:flex;align-items:center;justify-content:space-between;gap:16px;padding:18px 0;cursor:pointer;font:400 15px/1.3 'Hanken Grotesk',system-ui,sans-serif;color:#2a2a2a}
+html body #page #pContent header.sh-head.std-on .std-i summary::-webkit-details-marker{display:none}
+html body #page #pContent header.sh-head.std-on .std-i summary i{display:inline-flex;width:16px;height:16px;flex:none;transition:transform .3s ease}
+html body #page #pContent header.sh-head.std-on .std-i summary i svg{width:16px;height:16px;fill:none;stroke:currentColor;stroke-width:1.5;stroke-linecap:round}
+html body #page #pContent header.sh-head.std-on .std-i[open] summary i{transform:rotate(45deg)}
+html body #page #pContent header.sh-head.std-on .std-i summary:hover,html body #page #pContent header.sh-head.std-on .std-i summary:focus-visible{color:#000;outline:none}
+html body #page #pContent header.sh-head.std-on .std-b{padding:0 32px 22px 0;font:400 14.5px/1.6 'Hanken Grotesk',system-ui,sans-serif;color:#3a3a3a}
+html body #page #pContent header.sh-head.std-on .std-b p{margin:0!important;font:inherit!important;color:inherit!important}
+html body #page #pContent header.sh-head.std-on .std-b .cgx-n{display:flex;flex-wrap:wrap;gap:12px 28px}
+html body #page #pContent header.sh-head.std-on .std-b .cgx-n > div{display:flex;flex-direction:column;gap:2px}
+html body #page #pContent header.sh-head.std-on .std-b .cgx-n b{font:500 26px/1.1 'Hanken Grotesk',system-ui,sans-serif!important;color:#141414!important;letter-spacing:-.02em}
+html body #page #pContent header.sh-head.std-on .std-b .cgx-n small{font:400 12.5px/1.4 'Hanken Grotesk',system-ui,sans-serif!important;color:#6b6b6b!important}
+html body #page #pContent header.sh-head.std-on .std-b .cgx-st b{display:block;font:500 15px/1.4 'Hanken Grotesk',system-ui,sans-serif!important;color:#141414!important;margin-bottom:4px}
+html body #page #pContent header.sh-head.std-on .std-dl{margin:0;display:grid;gap:12px}
+html body #page #pContent header.sh-head.std-on .std-dl > div{display:grid;grid-template-columns:110px minmax(0,1fr);gap:12px}
+html body #page #pContent header.sh-head.std-on .std-dl dt{margin:0!important;font:500 11px/1.6 'Hanken Grotesk',system-ui,sans-serif!important;letter-spacing:.1em!important;text-transform:uppercase;color:#6b6b6b!important}
+html body #page #pContent header.sh-head.std-on .std-dl dd{margin:0!important;font:400 14.5px/1.5 'Hanken Grotesk',system-ui,sans-serif!important;color:#2a2a2a!important}
+html body #page #pContent header.sh-head.std-on .std-f{margin:0;position:relative;min-height:clamp(380px,46vw,620px);border-radius:4px;overflow:hidden}
+html body #page #pContent header.sh-head.std-on .std-f .cover{position:absolute!important;inset:0!important;width:100%!important;height:100%!important;aspect-ratio:auto!important;margin:0!important;border-radius:0!important}
+html body #page #pContent header.sh-head.std-on .std-f .cover img,html body #page #pContent header.sh-head.std-on .std-f .cover video{width:100%!important;height:100%!important;object-fit:cover!important}
+html body #page #pContent header.sh-head.std-on .std-f .std-ctx{position:absolute!important;inset:0;display:block!important;background:transparent!important;padding:0!important;margin:0!important;min-height:0!important}
+html body #page #pContent header.sh-head.std-on .std-f .std-ctx #hgrid,html body #page #pContent header.sh-head.std-on .std-f .std-ctx .wrow{display:block!important;margin:0!important;padding:0!important;border:0!important;width:100%!important;height:100%!important;max-width:none!important}
+html body #page #pContent header.sh-head.std-on .std-f .std-ctx .cover{position:absolute!important;inset:0!important;width:100%!important;height:100%!important;aspect-ratio:auto!important;border-radius:0!important}
+html body #page #pContent header.sh-head.std-on .std-f.std-fit .std-ctx{inset:auto!important}
+html body #page #pContent header.sh-head.std-on .std-f.std-fit .std-ctx .cover{position:relative!important}
+html body #page #pContent header.sh-head.std-on .std-f .std-art{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;overflow:hidden}
+html body #page #pContent header.sh-head.std-on .std-f .std-full{width:100%;height:100%;object-fit:cover;display:block}
+html body #page #pContent header.sh-head.std-on .std-f .std-logo{width:58%;max-width:340px;height:auto;object-fit:contain}
+html body #page #pContent header.sh-head.std-on .std-f .std-logo.tl{position:absolute;left:28px;top:28px;width:38%;max-width:200px}
+html body #page #pContent header.sh-head.std-on .std-f .std-phone{height:78%;width:auto;max-width:70%;object-fit:contain;border-radius:28px;box-shadow:0 30px 60px -20px rgba(0,0,0,.45)}
+html body #page #pContent header.sh-head.std-on .std-f .std-logo.tl + .std-phone{margin-top:12%;height:72%}
+html body #page #pContent header.sh-head.std-on .std-f .std-c .cover{position:absolute!important;inset:0!important;width:100%!important;height:100%!important;aspect-ratio:auto!important;margin:0!important;border-radius:0!important}
+@media (max-width:860px){html body #page #pContent article.std-shell > header.sh-head.std-on{grid-template-columns:minmax(0,1fr);gap:28px}
+ html body #page #pContent header.sh-head.std-on .std-f{min-height:0;aspect-ratio:4/3;order:-1}
+ html body #page #pContent header.sh-head.std-on .std-acc{padding-top:24px}}
 /* hero statement in the serif used for headers */
 html body #home .lhero{align-items:center!important;padding-bottom:clamp(24px,4vw,48px)!important}
 html body #home .hl-stage:not(.hl-gif){aspect-ratio:585/400!important}
@@ -16716,4 +16761,51 @@ document.querySelectorAll('.pcd:not([data-b])').forEach((sec,k)=>{sec.dataset.b=
   document.addEventListener('visibilitychange',()=>{ if(document.hidden&&!A.paused) A.pause(); });
   check();
 })();
-</script></body></html>
+</script><script>
+/* case studies: the standard information in one layout (title, summary, + details on the left, cover on the right), then the case begins */
+(function(){
+  const NAME={kl:'Klockit',hb:'Roger That',px:'Chirpmonks',gp:'PocketPal',wt:'Wellness Tourism India',dp:'A Third Eye View'};
+  const LEDE={gp:'A behavioural-design concept that shows people how much they can spend today, so small UPI payments stop adding up unseen and saving becomes possible.'};
+  const DUP=['.kl-covrow','.gp-ppc','.dp-cover'];
+  const plus='<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>';
+  function coverArt(cov){
+    const cs=getComputedStyle(cov), ch=cov.firstElementChild, chs=ch?getComputedStyle(ch):null;
+    const bg=[chs&&chs.backgroundImage!=='none'?chs.backgroundImage:'', cs.backgroundImage!=='none'?cs.backgroundImage:'', cs.backgroundColor].filter(Boolean).join(',');
+    const ims=[...cov.querySelectorAll('img')];
+    const big=ims.find(im=>getComputedStyle(im).objectFit==='cover'&&im.naturalWidth&&im.naturalHeight<im.naturalWidth*1.4);
+    if(big) return `<div class="std-art" style="background:${bg}"><img class="std-full" src="${big.getAttribute('src')}" alt="${(big.alt||'').replace(/"/g,'&quot;')}"></div>`;
+    const phone=ims.find(im=>im.naturalHeight>im.naturalWidth*1.5), logo=ims.find(im=>getComputedStyle(im).objectFit==='contain');
+    if(phone||logo) return `<div class="std-art" style="background:${bg}">${logo?`<img class="std-logo${phone?' tl':''}" src="${logo.getAttribute('src')}" alt="">`:''}${phone?`<img class="std-phone" src="${phone.getAttribute('src')}" alt="">`:''}</div>`;
+    const c=cov.cloneNode(true); c.removeAttribute('data-go'); c.classList.add('std-clone'); return `<div class="std-art std-c" style="background:${bg}">${c.outerHTML}</div>`;
+  }
+  function build(a){
+    const sh=a.querySelector(':scope > header.sh-head'); if(!sh||sh.classList.contains('std-on')) return;
+    const pre=(sh.id||'').split('-')[0]; const top=sh.querySelector('.sh-top'), h1=sh.querySelector('.sh-h1'), gl=sh.querySelector('.cs-glance');
+    if(!h1) return;
+    const lede=(a.querySelector('.sh-old .cs-lede')||{}).textContent||LEDE[pre]||'';
+    const items=[];
+    if(gl) gl.querySelectorAll('.cgx-s').forEach(c=>{ const k=(c.querySelector('.cgx-k')||{}).textContent||''; const body=c.cloneNode(true); const hd=body.querySelector('.cgx-h'); if(hd) hd.remove(); items.push([k,body.innerHTML,c.classList.contains('cgx-o')]); });
+    const ov=a.querySelector(':scope > section.cs-ov');
+    if(ov){ const dl=ov.querySelector('dl'); if(dl) items.push(['Role, timeline & tools','<dl class="std-dl">'+dl.innerHTML+'</dl>',false]); }
+    const row=[...document.querySelectorAll('#hgrid .wrow')].find(r=>(r.querySelector('.wr-n')||{}).textContent===NAME[pre]);
+    const cov=row&&row.querySelector('.cover');
+    const L=document.createElement('div'); L.className='std-l';
+    if(top) L.appendChild(top); L.appendChild(h1);
+    if(lede){ const pp=document.createElement('p'); pp.className='std-lede'; pp.textContent=lede.trim(); L.appendChild(pp); }
+    const acc=document.createElement('div'); acc.className='std-acc';
+    acc.innerHTML=items.map(([k,b,o])=>`<details class="std-i${o?' std-o':''}"><summary><span>${k}</span><i>${plus}</i></summary><div class="std-b">${b}</div></details>`).join('');
+    L.appendChild(acc);
+    const F=document.createElement('figure'); F.className='std-f';
+    if(cov){ F.innerHTML=coverArt(cov); }
+    [...sh.children].forEach(ch=>{ if(ch===gl) ch.remove(); else ch.classList.add('std-hide'); });
+    sh.appendChild(L); sh.appendChild(F); sh.classList.add('std-on');
+
+    if(ov) ov.classList.add('std-hide');
+    DUP.forEach(q=>a.querySelectorAll(q).forEach(n=>n.classList.add('std-hide')));
+  }
+  const run=()=>document.querySelectorAll('#pContent article.std-shell').forEach(build);
+  const pc=document.getElementById('pContent'); if(!pc) return;
+  new MutationObserver(()=>requestAnimationFrame(run)).observe(pc,{childList:true}); run();
+})();
+</script>
+</body></html>
